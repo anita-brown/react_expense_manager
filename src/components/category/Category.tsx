@@ -19,8 +19,8 @@ const Category = () => {
         <i>
           <MdEmojiTransportation size={50} />
         </i>
-        <div className="flex flex-col gap-">
-          <h1 className="text-[18px] font-semibold">Transportation</h1>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-[18px] font-semibold">Transport</h1>
           <p className="text-[18px] font-bold">#5000.00</p>
         </div>
       </div>

@@ -9,6 +9,8 @@ const Form = () => {
       <label htmlFor="">Price</label>
 
       <input className="border border-gray-500 py-2 px-2 rounded" type="number" placeholder="Enter Price..." />
+      <label htmlFor="">Date</label>
+      <input className="border border-gray-500 py-2 px-2 rounded" type="date" name="date" id="" />
       <label htmlFor="">Category</label>
       <select className="border border-gray-500 py-2 px-2 rounded" name="" id="">
         <option value="">None</option>
