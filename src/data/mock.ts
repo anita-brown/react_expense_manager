@@ -66,7 +66,7 @@ export const mockData =  [
         id: 10,
         title: "Eye Test",
         date: "3 Dec 2022",
-        category: "Medical",
+        category: "Medicals",
         price: "2500"
     },
 ]

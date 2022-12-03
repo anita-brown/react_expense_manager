@@ -5,7 +5,7 @@ import { BiPlusMedical } from "react-icons/bi";
 
 const Category = () => {
   return (
-    <section className="flex xs:gap-8 sm:gap-8 flex-wrap justify-between mt-[3rem]">
+    <section className="flex xs:gap-8 sm:gap-8 flex-wrap justify-between mt-[3rem] mb-[3rem]">
       <div className="flex items-center gap-8 block w-[250px] h-[150px] p-6 bg-gradient-to-r from-yellow-400 to-yellow-200 rounded-lg shadow-md hover:bg-gradient-to-l hover:from-yellow-500 hover:bg-yellow-300">
         <i>
           <IoFastFoodOutline size={50} />
