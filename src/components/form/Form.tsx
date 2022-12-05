@@ -1,32 +1,38 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../../hooks/hooks";
-import { IExpense } from "../../redux/features/expenseSlice";
+import { useDispatch } from "react-redux";
+import { addExpenses, IExpense } from "../../redux/features/expenseSlice";
 
 const Form = () => {
-    const options = [
-      { value: "", text: "--Choose an option--" },
-      { value: "food", text: "Food" },
-      { value: "medicals", text: "Medicals" },
-      { value: "transport", text: "Transport" },
-      { value: "others", text: "Others" },
-    ];
-  const dispatch = useAppDispatch();
+  const options = [
+    { value: "", text: "--Choose an option--" },
+    { value: "food", text: "Food" },
+    { value: "medicals", text: "Medicals" },
+    { value: "transport", text: "Transport" },
+    { value: "others", text: "Others" },
+  ];
+  const dispatch = useDispatch();
   const [expense, setExpense] = useState<IExpense>();
- 
-  
+
   const [values, setValues] = useState({
     title: "",
     price: "",
-    date: "",
-    category: []
-  })
+    date: Date.now(),
+    category: "",
+  });
   const handleAddExpenses = (e: any) => {
-    const value = e.target.value
-  setValues({...values, [e.target.name]:value })
-console.log("vvv",values)
-  }
+    const value = e.target.value;
+    setValues({ ...values, [e.target.name]: value });
+    console.log("vvv", values);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    dispatch(addExpenses(values));
+  };
+
   return (
-    <form action="" className="flex gap-1 flex-col mt-8">
+    <form onSubmit={handleSubmit} action="" className="flex gap-1 flex-col mt-8">
       <label htmlFor="">Title</label>
       <input className="border border-gray-500 py-2 px-2 rounded" value={values.title} onChange={handleAddExpenses} type="text" name="title" placeholder="Enter Expense Title..." />
 

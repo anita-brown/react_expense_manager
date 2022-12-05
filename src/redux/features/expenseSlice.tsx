@@ -1,33 +1,40 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import { v4 as uuid } from "uuid";
+// 
 export interface ExpenseState {
-    expense: number;
-    category: string[]
-    transactions: string[]
-//   expenseHistory: {
-//     expenseName: string;
-//       price: number;
-//   }[];
+  totalExpenseValue: number;
+  transactions: string[];
+  //   expenseHistory: {
+  //     expenseName: string;
+  //       price: number;
+  //   }[];
 }
 export interface IExpense {
-    expenseName: string;
+  expenseName: string;
   price: number | string;
 }
-const initialState: ExpenseState = {
-    expense: 0,
-    category: [],
-    transactions: []
-//   expenseHistory: [],
+const initialState: any = {
+  totalExpenseValue: 0,
+  transactions: [],
+  //   expenseHistory: [],
 };
 
 export const expenseSlice = createSlice({
   name: "expense",
   initialState,
-    reducers: {
-        getExpenses: () => {},
-        addExpenses: () => { },
-        editExpenses: () => { },
-        deleteExpenses: () => {},
+  reducers: {
+    getTransactions: (state) => {
+      return state.transactions;
+    },
+    addExpenses: (state, actions) => {
+      const expense = actions.payload;
+      expense.id = uuid();
+      expense.date = new Date(expense.date);
+
+      state.transactions = [state.transactions, expense];
+    },
+    editExpenses: () => {},
+    deleteExpenses: () => {},
     // addExpenses: (state, action: PayloadAction<IExpense>) => {
     //   if (typeof action.payload.price !== "number") {
     //     state.expenseHistory.push({
@@ -48,5 +55,8 @@ export const expenseSlice = createSlice({
 });
 
 // export const { addExpenses, calculateExpense } = expenseSlice.actions;
-export const { getExpenses, addExpenses, editExpenses, deleteExpenses } = expenseSlice.actions;
+export const { getTransactions, addExpenses, editExpenses, deleteExpenses } = expenseSlice.actions;
+
+const getTransactionsSelector = (state: ExpenseState) => state.transactions;
+
 export default expenseSlice.reducer;
