@@ -1,6 +1,8 @@
+import { randomUUID } from "crypto";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addExpenses, IExpense } from "../../redux/features/expenseSlice";
+import { addExpenses } from "../../redux/features/expenseSlice";
+import { v4 as uuid } from "uuid";
 
 const Form = () => {
   const options = [
@@ -11,24 +13,37 @@ const Form = () => {
     { value: "others", text: "Others" },
   ];
   const dispatch = useDispatch();
-  const [expense, setExpense] = useState<IExpense>();
 
   const [values, setValues] = useState({
     title: "",
     price: "",
-    date: Date.now(),
+    date: "",
     category: "",
+    id: uuid()
+    // date: Date.now(),
   });
+
   const handleAddExpenses = (e: any) => {
-    const value = e.target.value;
-    setValues({ ...values, [e.target.name]: value });
-    console.log("vvv", values);
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+
+    // console.log("vvv", values);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     dispatch(addExpenses(values));
+    setValues({
+      title: "",
+      price: "",
+      date: "",
+      category: "",
+      id: uuid()
+    });
   };
 
   return (

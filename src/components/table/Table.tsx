@@ -55,9 +55,9 @@ const Table = ({ columns, data } :any) => {
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table {...getTableProps()} className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
-                  {headerGroups.map((headerGroup: any) => (
+                  {headerGroups?.map((headerGroup: any) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
-                      {headerGroup.headers.map((column: any) => (
+                      {headerGroup?.headers.map((column: any) => (
                       
                         <th scope="col" className="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" {...column.getHeaderProps(column.getSortByToggleProps())}>
                           <div className="flex items-center justify-between">
@@ -84,7 +84,7 @@ const Table = ({ columns, data } :any) => {
                     prepareRow(row);
                     return (
                       <tr {...row.getRowProps()}>
-                        {row.cells.map((cell: any) => {
+                        {row?.cells.map((cell: any) => {
                           return (
                             <td {...cell.getCellProps()} className="px-6 py-4 whitespace-nowrap" role="cell">
                                   {cell.column.Cell.name === "defaultRenderer" ? <div className="text-sm text-gray-500">{cell.render("Cell")}</div> : cell.render("Cell")}
